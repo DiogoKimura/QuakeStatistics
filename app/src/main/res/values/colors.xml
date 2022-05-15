@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="quake_red_700">#FF9B3228</color>
+    <color name="quake_red_900">#772720</color>
+    <color name="quake_white_300">#FFEFEEDD</color>
+    <color name="quake_white_500">#B8B7AB</color>
+    <color name="quake_black">#FF0A0A0A</color>
 </resources>

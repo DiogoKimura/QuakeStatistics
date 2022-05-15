@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">QuakeStatistics</string>
+    <string name="app_name">Quake Statistics</string>
+    <string name="loading_informaction">Loading Information</string>
+    <string name="server_label">Server:</string>
+    <string name="player_label">Players:</string>
+    <string name="kills_label">Kills:</string>
+    <string name="best_player_label">Best Players:</string>
+    <string name="players_tab">Players</string>
+    <string name="kill_mode_tab">Kills by Mode</string>
+    <string name="deaths_label">Deaths:</string>
+    <string name="suicide_label">Suicide:</string>
 </resources>

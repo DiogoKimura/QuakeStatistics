@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/nav_home"
+        tools:layout="@layout/fragment_home"
+        android:name="com.example.quakestatistics.view.HomeFragment">
+        <action
+            android:id="@+id/action_nav_home_to_nav_view_matches"
+            app:destination="@id/nav_match_list"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_match_list"
+        tools:layout="@layout/fragment_match_list"
+        android:name="com.example.quakestatistics.view.MatchListFragment">
+        <action
+            android:id="@+id/action_nav_match_list_to_nav_match_details"
+            app:destination="@+id/nav_match_details"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_match_details"
+        tools:layout="@layout/fragment_match_details"
+        android:name="com.example.quakestatistics.view.MatchDetailFragment">
+    </fragment>
+
+</navigation>
