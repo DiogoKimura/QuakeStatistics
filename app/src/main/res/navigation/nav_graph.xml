@@ -11,7 +11,12 @@
         android:name="com.example.quakestatistics.view.HomeFragment">
         <action
             android:id="@+id/action_nav_home_to_nav_view_matches"
-            app:destination="@id/nav_match_list"/>
+            app:destination="@id/nav_match_list">
+            <argument
+                android:name="logLines"
+                app:argType="string[]"
+                android:defaultValue="@null" />
+        </action>
     </fragment>
 
     <fragment
@@ -20,7 +25,11 @@
         android:name="com.example.quakestatistics.view.MatchListFragment">
         <action
             android:id="@+id/action_nav_match_list_to_nav_match_details"
-            app:destination="@+id/nav_match_details"/>
+            app:destination="@+id/nav_match_details">
+            <argument
+                android:name="matchItem"
+                app:argType="com.example.quakestatistics.model.MatchItem" />
+        </action>
     </fragment>
 
     <fragment

@@ -1,4 +1,4 @@
-package com.example.quakestatistics.view
+package com.example.quakestatistics
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

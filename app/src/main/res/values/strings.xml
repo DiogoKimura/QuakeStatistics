@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Quake Statistics</string>
     <string name="loading_informaction">Loading Information</string>
-    <string name="server_label">Server:</string>
-    <string name="player_label">Players:</string>
-    <string name="kills_label">Kills:</string>
-    <string name="best_player_label">Best Players:</string>
+    <string name="server_label">Server: %1$s</string>
+    <string name="score_label">Score: %1$s</string>
+    <string name="player_label">Players: %1$s</string>
+    <string name="kills_label">Kills: %1$s</string>
+    <string name="best_player_label">Best Player: %1$s</string>
+    <string name="stats_label">Kills: %1$d / Deaths: %2$d / Suicide: %3$d</string>
     <string name="players_tab">Players</string>
     <string name="kill_mode_tab">Kills by Mode</string>
     <string name="deaths_label">Deaths:</string>
