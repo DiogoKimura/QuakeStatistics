@@ -37,8 +37,7 @@ class MatchDetailFragment : Fragment() {
         view.findViewById<TextView>(R.id.header_title).text = getString(R.string.server_label, matchItem.title)
         view.findViewById<TextView>(R.id.header_player).text = getString(R.string.player_label, matchItem.body1)
         view.findViewById<TextView>(R.id.header_kills).text = getString(R.string.kills_label, matchItem.body2)
-        //TODO IMPLEMENT BEST PLAYER
-        view.findViewById<TextView>(R.id.header_best_player).text = getString(R.string.best_player_label, matchItem.body2)
+        view.findViewById<TextView>(R.id.header_best_player).text = getString(R.string.best_player_label, matchItem.bestPlayerName())
 
         val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)

@@ -19,7 +19,7 @@ class HomePresenter(
     }
 
     override fun onError() {
-        TODO("Not yet implemented")
+        fragment.onDownloadError()
     }
 
     override fun onComplete() {

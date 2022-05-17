@@ -2,6 +2,19 @@ package com.example.quakestatistics.parser
 
 import com.example.quakestatistics.model.*
 
+/*
+* All the logic was first created on a Kotlin Alone Project
+*
+* On Every MAtch
+* * Everu Player will be added
+* * When the player changes his name, that's what it'll be recorded
+* * The Stats:
+* * * The Score: Kills - Suicide
+* * * The Kills: Kill someone
+* * * The Deaths: Killed by someone
+* * * The Suicide: Killed by <world>
+*
+* */
 class LogParser private constructor(logLines: List<String>) {
 
     private val logLines = ArrayList<String>()
@@ -26,8 +39,6 @@ class LogParser private constructor(logLines: List<String>) {
     }
 
     private fun parseLog() {
-
-
         logLines.forEach {
             when {
                 it.contains(QuakeLogConstSingleton.EVENT_INIT) -> {
@@ -62,17 +73,19 @@ class LogParser private constructor(logLines: List<String>) {
                     val (killer, killed, mod) =
                         getMatchResult(it, QuakeLogConstSingleton.REG_KILL_EVENT)!!.destructured
 
-                    if (killer == QuakeLogConstSingleton.WORLD_INDEX || killer == killed)
+                    if (killer == QuakeLogConstSingleton.WORLD_INDEX)
                         addSuicideToUser(killed.toInt())
                     else {
-                        addKillToUser(killer.toInt())
-                        addDeathToUser(killed.toInt())
+                        if (killer != killed) {
+                            addKillToUser(killer.toInt())
+                            addDeathToUser(killed.toInt())
+                        }
                     }
 
                     var itemExist = false
                     for (i in 0 until killsMode.size) {
                         val item = killsMode[i]
-                        if (item.name.ordinal == mod.toInt()){
+                        if (item.name.ordinal == mod.toInt()) {
                             item.add()
                             itemExist = true
                             continue

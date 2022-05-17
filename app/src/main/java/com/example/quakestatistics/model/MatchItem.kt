@@ -11,4 +11,17 @@ data class MatchItem(
     var isCorrupted: Boolean = false,
     val userList: List<UserStats>,
     val killsMode: List<KillMode>
-) : Parcelable
+) : Parcelable {
+
+    fun bestPlayerName() : String {
+        var bestPlayerName = ""
+        var bestPlayerScore = Int.MIN_VALUE
+        userList.forEach {
+            if (it.getScore() > bestPlayerScore) {
+                bestPlayerName = it.name
+                bestPlayerScore = it.getScore()
+            }
+        }
+        return bestPlayerName
+    }
+}

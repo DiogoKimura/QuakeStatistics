@@ -1,15 +1,11 @@
 package com.example.quakestatistics.presenter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quakestatistics.R
-import com.example.quakestatistics.model.MatchItem
 import com.example.quakestatistics.model.UserStats
-import com.example.quakestatistics.model.UsersStats
 import com.example.quakestatistics.view.MatchDetailsPlayerFragment
-import com.example.quakestatistics.view.MatchListFragment
 
 class MatchPlayerDetailsAdapter(
     private val fragment: MatchDetailsPlayerFragment,
@@ -26,7 +22,7 @@ class MatchPlayerDetailsAdapter(
         val item = usersStats[position]
 
         holder.playerName.text = item.name
-        holder.playerScore.text = fragment.context?.getString(R.string.score_label, item.getPoints().toString())
+        holder.playerScore.text = fragment.context?.getString(R.string.score_label, item.getScore().toString())
         holder.playerStats.text = fragment.context?.getString(R.string.stats_label,
             item.kills, item.deaths, item.suicide)
     }

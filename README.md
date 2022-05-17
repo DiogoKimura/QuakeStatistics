@@ -48,12 +48,21 @@ When the user click in one match, another screen will appear. In this screen we'
 
 - Players Statistics
   - Player name
+    - The last name configured
   - Score
+    - Kills - Suicide
   - Kills
+    - +1 when kill someone
+    - +0 when self kill
   - Deaths
+    - +1 when killed by someone
   - Suicide
+    - +1 when killed by world
 - Kills by Mode
   - Every Kill Mode with its quantities
+- Best Player Name
+  - The player with the highest score
+
 
 
 

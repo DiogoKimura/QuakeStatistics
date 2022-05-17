@@ -50,5 +50,5 @@ data class UserStats (
     fun addKill() = kills ++
     fun addDeath() = deaths ++
     fun addSuicide() = suicide ++
-    fun getPoints() = kills - suicide
+    fun getScore() = kills - suicide
 }

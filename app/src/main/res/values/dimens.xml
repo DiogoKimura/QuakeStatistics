@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--ONLY COMPONENT SIZE-->
+    <dimen name="header_background_height">144dp</dimen>
+
+    <dimen name="kill_mode_item_height">40dp</dimen>
+    <dimen name="kill_mode_item_margin_bottom">16dp</dimen>
+    <dimen name="kill_mode_item_line_size">2dp</dimen>
+
+    <dimen name="match_item_height">20dp</dimen>
+    <dimen name="match_item_margin_bottom">16dp</dimen>
+
+    <dimen name="player_item_height">88dp</dimen>
+    <dimen name="player_item_margin_horizontal">20dp</dimen>
+    <dimen name="player_item_margin_bottom">16dp</dimen>
+
+
+
+    <!--ONLY SPACING-->
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
+
+    <!--ONLY TEXT SIZE-->
+    <dimen name="size_16">16sp</dimen>
+</resources>

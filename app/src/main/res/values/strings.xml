@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Quake Statistics</string>
     <string name="loading_informaction">Loading Information</string>
+    <string name="try_again">CLick to try again</string>
+    <string name="error_warning">Please, enable your network to download log file and enjoy the Quake 3 Arena Server Statistics Experience!!</string>
     <string name="server_label">Server: %1$s</string>
     <string name="score_label">Score: %1$s</string>
     <string name="player_label">Players: %1$s</string>

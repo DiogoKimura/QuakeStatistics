@@ -27,7 +27,7 @@ class DownloaderDataSource {
                 }
 
                 override fun onFailure(call: Call<ResponseBody>?, t: Throwable?) {
-                    TODO("Not yet implemented")
+                    callback.onError()
                 }
             })
     }
