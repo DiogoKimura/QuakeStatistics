@@ -4,6 +4,18 @@ This app parse a quake 3 generated log and show the matches with its details.
 
 This app is coded with Kotlin.
 
+## How to install
+
+### With apk
+
+Copy quake-statistics.apk from root to your device. Find the apk with any file manager, click to install. The file manager app will ask for a permission, just allow it and run the app.
+
+### With Android Studio
+
+Clone the repo, build and run. The project was built with:
+
+> Android Studio Arctic Fox | 2020.3.1 Patch 4
+
 ## Organization
 
 All the parser implementation was first created in a apart project https://github.com/DiogoKimura/RawQuakeLogParser. In this project I tried different approaches to find a better solution to parse the log.
@@ -64,7 +76,15 @@ When the user click in one match, another screen will appear. In this screen we'
   - The player with the highest score
 
 
+# Contacts
 
+By Diogo Kimura
+
+E-mail: diogokimura94@gmail.com
+
+LinkedIn: www.linkedin.com/in/diogo-kimura-yamashiro
+
+Github: https://github.com/DiogoKimura
 
 
 
