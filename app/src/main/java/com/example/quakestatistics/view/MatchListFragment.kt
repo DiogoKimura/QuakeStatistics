@@ -1,6 +1,7 @@
 package com.example.quakestatistics.view
 
 import android.os.Bundle
+import android.service.autofill.FieldClassification
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +18,14 @@ import com.example.quakestatistics.presenter.OnItemClickListener
 
 class MatchListFragment : Fragment(), OnItemClickListener {
 
-    private lateinit var logLines : ArrayList<String>
+    private lateinit var matchList : ArrayList<MatchItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.getStringArrayList("logLines")?.let { logLines = it }
+        arguments?.getStringArrayList("logLines")?.let {
+            matchList = LogParser.getInstance(it).getMatchList() }
+
     }
 
     override fun onCreateView(
@@ -39,13 +42,11 @@ class MatchListFragment : Fragment(), OnItemClickListener {
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_match_list)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        recyclerView.adapter = MatchListAdapter(this,
-            LogParser.getInstance(logLines).getMatchList())
+        recyclerView.adapter = MatchListAdapter(this, matchList)
     }
 
     override fun onClick(position: Int) {
-        val match : MatchItem = LogParser.getInstance(logLines).getMatchList()[position]
-        val bundle = bundleOf("match" to match)
+        val bundle = bundleOf("match" to matchList[position])
         findNavController().navigate(R.id.action_nav_match_list_to_nav_match_details, bundle)
     }
 }

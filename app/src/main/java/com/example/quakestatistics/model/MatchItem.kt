@@ -9,5 +9,6 @@ data class MatchItem(
     val body1: String,
     val body2: String,
     var isCorrupted: Boolean = false,
-    val usersStats: UsersStats? = null
+    val userList: List<UserStats>,
+    val killsMode: List<KillMode>
 ) : Parcelable

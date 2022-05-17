@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.quakestatistics.model.KillMode
 import com.example.quakestatistics.model.MatchItem
+import com.example.quakestatistics.model.UserStats
 import com.example.quakestatistics.view.MatchDetailsKillsModeFragment
 import com.example.quakestatistics.view.MatchDetailsPlayerFragment
 
@@ -18,8 +20,8 @@ class MatchDetailViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
-            0 -> MatchDetailsPlayerFragment.getInstance(matchItem.usersStats!!)
-            else -> MatchDetailsKillsModeFragment.getInstance()
+            0 -> MatchDetailsPlayerFragment.getInstance(matchItem.userList as ArrayList<UserStats>)
+            else -> MatchDetailsKillsModeFragment.getInstance(matchItem.killsMode as ArrayList<KillMode>)
         }
     }
 }

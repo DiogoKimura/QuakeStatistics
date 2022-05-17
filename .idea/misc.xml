@@ -8,7 +8,10 @@
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_home.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_match_details.xml" value="0.25025641025641027" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_match_details].xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_match_details_kills_mode.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_match_details_players.xml" value="0.4" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/fragment_match_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/kills_mode_item.xml" value="0.36102564102564105" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/match_details_kills_mode_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/match_details_players_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Diogo/AndroidStudioProjects/QuakeStatistics/app/src/main/res/layout/match_item.xml" value="0.36102564102564105" />

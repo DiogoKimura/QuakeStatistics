@@ -1,10 +1,11 @@
 package com.example.quakestatistics.model
 
+import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class UsersStats : Parcelable {
+class UsersStats() : Parcelable {
     private val userList = ArrayList<UserStats>()
 
     fun addUser(ind: Int, name: String){
@@ -38,7 +39,7 @@ class UsersStats : Parcelable {
 }
 
 @Parcelize
-class UserStats (
+data class UserStats (
     val ind: Int,
     var name: String,
     var kills: Int = 0,

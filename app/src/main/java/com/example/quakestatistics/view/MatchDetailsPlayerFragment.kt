@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quakestatistics.R
+import com.example.quakestatistics.model.UserStats
 import com.example.quakestatistics.model.UsersStats
 import com.example.quakestatistics.parser.LogParser
 import com.example.quakestatistics.presenter.MatchListAdapter
@@ -16,10 +17,10 @@ import com.example.quakestatistics.presenter.MatchPlayerDetailsAdapter
 class MatchDetailsPlayerFragment : Fragment() {
 
     companion object {
-        fun getInstance(usersStats: UsersStats) : Fragment {
+        fun getInstance(userList: ArrayList<UserStats>) : Fragment {
             val matchDetailsPlayerFragment = MatchDetailsPlayerFragment()
             val bundle = Bundle()
-            bundle.putParcelable("usersStats", usersStats)
+            bundle.putParcelableArrayList("userList", userList)
             matchDetailsPlayerFragment.arguments = bundle
             return matchDetailsPlayerFragment
         }
@@ -36,11 +37,11 @@ class MatchDetailsPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val usersStats : UsersStats = requireArguments().getParcelable("usersStats")!!
+        val userList = requireArguments().getParcelableArrayList<UserStats>("userList")!!
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_match_list)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.rv_match_player)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        recyclerView.adapter = MatchPlayerDetailsAdapter(this, usersStats.getUserList())
+        recyclerView.adapter = MatchPlayerDetailsAdapter(this, userList)
     }
 }

@@ -1,18 +1,16 @@
 package com.example.quakestatistics.parser
 
-import com.example.quakestatistics.model.MatchItem
-import com.example.quakestatistics.model.QuakeLogConstSingleton
-import com.example.quakestatistics.model.UsersStats
+import com.example.quakestatistics.model.*
 
 class LogParser private constructor(logLines: List<String>) {
 
     private val logLines = ArrayList<String>()
     private val matchList = ArrayList<MatchItem>()
+    private val userList = ArrayList<UserStats>()
+    private val killsMode = ArrayList<KillMode>()
 
-    private var serverName : String = ""
+    private var serverName: String = ""
     private var killCount = 0
-    private val userListStats = UsersStats()
-    private val killsMode = HashMap<Int, Int>()
     private var isGameStart = false
 
     init {
@@ -23,26 +21,21 @@ class LogParser private constructor(logLines: List<String>) {
         parseLog()
     }
 
-    fun updateList(logLines: List<String>){
-        this.logLines.clear()
-        this.logLines.addAll(logLines)
-    }
-
-    fun getMatchList() : ArrayList<MatchItem> {
+    fun getMatchList(): ArrayList<MatchItem> {
         return matchList
     }
 
-    private fun parseLog(){
+    private fun parseLog() {
 
 
         logLines.forEach {
             when {
                 it.contains(QuakeLogConstSingleton.EVENT_INIT) -> {
-                    if (isGameStart){
+                    if (isGameStart) {
                         endGameTreatment(
                             serverName,
                             killCount,
-                            userListStats,
+                            userList,
                             killsMode,
                             true
                         )
@@ -54,14 +47,14 @@ class LogParser private constructor(logLines: List<String>) {
                     endGameTreatment(
                         serverName,
                         killCount,
-                        userListStats,
+                        userList,
                         killsMode
                     )
                 }
                 it.contains(QuakeLogConstSingleton.EVENT_CLI_INF) -> {
                     val ind = getTagSingleValue(it, QuakeLogConstSingleton.REG_USER_INDEX).toInt()
                     val name = getTagSingleValue(it, QuakeLogConstSingleton.REG_USER_NAME)
-                    userListStats.addUser(ind, name)
+                    addUser(ind, name)
                 }
                 it.contains(QuakeLogConstSingleton.EVENT_KILL) -> {
                     killCount++
@@ -70,35 +63,52 @@ class LogParser private constructor(logLines: List<String>) {
                         getMatchResult(it, QuakeLogConstSingleton.REG_KILL_EVENT)!!.destructured
 
                     if (killer == QuakeLogConstSingleton.WORLD_INDEX || killer == killed)
-                        userListStats.addSuicideToUser(killed.toInt())
+                        addSuicideToUser(killed.toInt())
                     else {
-                        userListStats.addKillToUser(killer.toInt())
-                        userListStats.addDeathToUser(killed.toInt())
+                        addKillToUser(killer.toInt())
+                        addDeathToUser(killed.toInt())
                     }
 
-                    if (killsMode.containsKey(mod.toInt())){
-                        killsMode[mod.toInt()] = killsMode[mod.toInt()]!! + 1
-                    } else {
-                        killsMode[mod.toInt()] = 1
+                    var itemExist = false
+                    for (i in 0 until killsMode.size) {
+                        val item = killsMode[i]
+                        if (item.name.ordinal == mod.toInt()){
+                            item.add()
+                            itemExist = true
+                            continue
+                        }
+
                     }
+                    if (!itemExist) killsMode.add(KillMode(KillModeEnum.values()[mod.toInt()]))
                 }
             }
         }
     }
 
-    private fun endGameTreatment(serverName: String,
-                                 killCount: Int,
-                                 usersStats: UsersStats,
-                                 killsMode: Map<Int, Int>,
-                                 isGameCorrupted: Boolean = false){
-        matchList.add(MatchItem(
-                        serverName,
-                        usersStats.getUserList().size.toString(),
-                        killCount.toString(),
-                        isGameCorrupted,
-                        usersStats))
+    private fun endGameTreatment(
+        serverName: String,
+        killCount: Int,
+        userList: List<UserStats>,
+        killsMode: List<KillMode>,
+        isGameCorrupted: Boolean = false
+    ) {
+
+        val userListToAdd = ArrayList<UserStats>()
+        userListToAdd.addAll(userList)
+        val killsModeToAdd = ArrayList<KillMode>()
+        killsModeToAdd.addAll(killsMode)
+
+        val matchItem = MatchItem(
+            serverName,
+            userList.size.toString(),
+            killCount.toString(),
+            isGameCorrupted,
+            userListToAdd,
+            killsModeToAdd
+        )
+        matchList.add(matchItem)
         this.killCount = 0
-        this.userListStats.clear()
+        this.userList.clear()
         this.killsMode.clear()
         isGameStart = false
     }
@@ -108,6 +118,33 @@ class LogParser private constructor(logLines: List<String>) {
     }
 
     private fun getMatchResult(log: String, regex: String) = regex.toRegex().find(log)
+
+    private fun addUser(ind: Int, name: String) {
+        val user = UserStats(ind, name)
+        userList.forEach {
+            if (it.ind == user.ind) {
+                it.name = user.name
+                return
+            }
+        }
+        userList.add(user)
+    }
+
+    private fun findUser(ind: Int): UserStats? {
+        userList.forEach {
+            if (it.ind == ind) return it
+        }
+
+        return null
+    }
+
+    private fun addKillToUser(ind: Int) = findUser(ind)?.addKill()
+
+    private fun addDeathToUser(ind: Int) = findUser(ind)?.addDeath()
+
+    private fun addSuicideToUser(ind: Int) = findUser(ind)?.addSuicide()
+
+    private fun clear() = userList.clear()
 
     companion object : SingletonHolder<LogParser, List<String>>(::LogParser)
 }
